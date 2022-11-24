@@ -69,6 +69,12 @@ export class PageTranslator {
 
 		// Create local reference to object for decrease risc mutation
 		const localTranslateState = this.translateState;
+		/**
+		 * 翻译文本
+		 * @param text 文本
+		 * @param priority 优先级
+		 * @returns
+		 */
 		const translateText = async (text: string, priority: number) => {
 			if (localContext !== this.translateContext) {
 				throw new Error('Outdated context');
@@ -139,9 +145,14 @@ export class PageTranslator {
 		styles: ['common.css', 'contentscript.css'],
 	});
 
+	/**
+	 * 显示原文弹框
+	 * @param evt
+	 */
 	private showOriginalTextHandler = (evt: MouseEvent) => {
 		const target: Element = evt.target as Element;
 
+		// 获取节点的原文
 		const getTextOfElement = (element: Node) => {
 			let text = '';
 
@@ -183,7 +194,7 @@ export class PageTranslator {
 	};
 
 	/**
-	 * For reduce re-render frequency on client
+	 * 减少客户端重绘频率
 	 */
 	private readonly updateTimeout = 100;
 	private lastSentUpdate = 0;

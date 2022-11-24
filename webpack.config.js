@@ -7,11 +7,16 @@ const { merge } = require('lodash');
 
 const package = require('./package.json');
 
-const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
-const devtool = mode === 'production' ? undefined : 'inline-source-map';
-const target = process.env.EXT_TARGET;
-const isFastBuild =
-	process.env.NODE_ENV !== 'production' && process.env.FAST_BUILD === 'on';
+// const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
+// const devtool = mode === 'production' ? undefined : 'inline-source-map';
+// const target = process.env.EXT_TARGET;
+// const isFastBuild =
+// 	process.env.NODE_ENV !== 'production' && process.env.FAST_BUILD === 'on';
+
+const mode = 'production';
+const devtool = undefined;
+const target = 'chrome';
+const isFastBuild = false;
 
 const targetsList = ['firefox', 'chromium', 'chrome'];
 if (targetsList.indexOf(target) === -1) {

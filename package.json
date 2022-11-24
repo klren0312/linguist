@@ -5,6 +5,7 @@
 	"license": "GPL-3.0",
 	"author": "Vitonsky <https://github.com/vitonsky>",
 	"scripts": {
+		"dev": "webpack-cli",
 		"clean": "rm -rf ./build",
 		"packAll": "cd build && ../scripts/zipAll.sh && cd ..",
 		"test:buildArchives": "cd build && ../scripts/testBuildArchives.sh && cd ..",
