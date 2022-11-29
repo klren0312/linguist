@@ -1,5 +1,6 @@
 /**
  * Helper which prevent overflow cursor to viewport
+ * 防止光标溢出窗口的辅助方法
  */
 export const fixPosToPreventOverflow = (left: number, top: number) => {
 	const fixLeft = (left: number) => {

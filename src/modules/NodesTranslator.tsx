@@ -115,6 +115,7 @@ export interface Config {
 
 /**
  * Module for dynamic translate a DOM nodes
+ * 动态翻译DOM节点的类
  */
 export class NodesTranslator {
 	private readonly translateCallback: TranslatorInterface;
@@ -128,12 +129,13 @@ export class NodesTranslator {
 				config?.ignoredTags !== undefined
 					? config.ignoredTags.filter(String)
 					: [],
-			),
+			), // 忽略的标签
 			translatableAttributes: new Set(
 				config?.translatableAttributes !== undefined
 					? config.translatableAttributes.filter(String)
 					: [],
-			),
+			), // 需要翻译的属性
+			// 懒翻译
 			lazyTranslate:
 				config?.lazyTranslate !== undefined ? config?.lazyTranslate : true,
 		};
@@ -285,6 +287,7 @@ export class NodesTranslator {
 		// Lazy translate when own element intersect viewport
 		// But translate at once if node have not parent (virtual node) or parent node is outside of body (utility tags like meta or title)
 		// 只翻译视图中触发的节点
+		// 如果节点没有父节点(虚拟节点)或者父节点在body外(例如meta或者title标签), 会直接翻译
 		if (this.config.lazyTranslate) {
 			const isAttachedToDOM = node.getRootNode() !== node;
 			const observableNode =

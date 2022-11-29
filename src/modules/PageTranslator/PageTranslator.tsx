@@ -27,11 +27,13 @@ type PageTranslatorConfig = { originalTextPopup?: boolean };
 export class PageTranslator {
 	private translateContext = Symbol();
 	private pageTranslator: NodesTranslator | null = null;
+	// 翻译方向
 	private pageTranslateDirection: { from: string; to: string } | null = null;
+	// 翻译状态
 	private translateState: PageTranslateState = {
-		resolved: 0,
-		rejected: 0,
-		pending: 0,
+		resolved: 0, // 成功
+		rejected: 0, // 失败
+		pending: 0, // 进行中
 	};
 
 	private config: PageTranslatorConfig;
@@ -68,6 +70,7 @@ export class PageTranslator {
 		const localContext = this.translateContext;
 
 		// Create local reference to object for decrease risc mutation
+		// 创建对象的本地引用, 简化对原变量的修改
 		const localTranslateState = this.translateState;
 		/**
 		 * 翻译文本
@@ -118,6 +121,9 @@ export class PageTranslator {
 		}
 	}
 
+	/**
+	 * 停止页面翻译
+	 */
 	public stop() {
 		if (this.pageTranslator === null) {
 			throw new Error('Page is not translated');
@@ -194,6 +200,7 @@ export class PageTranslator {
 	};
 
 	/**
+	 * 定时更新翻译状态
 	 * 减少客户端重绘频率
 	 */
 	private readonly updateTimeout = 100;
