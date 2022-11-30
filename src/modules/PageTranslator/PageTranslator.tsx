@@ -85,7 +85,7 @@ export class PageTranslator {
 
 			localTranslateState.pending++;
 			this.translateStateUpdate();
-
+			console.log('当前需要翻译的文本', text);
 			return translate(text, from, to, { priority })
 				.then((translatedText) => {
 					if (localContext === this.translateContext) {

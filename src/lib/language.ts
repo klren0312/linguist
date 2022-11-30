@@ -38,11 +38,13 @@ export function getLanguageNameByCode(
 
 export const detectLanguage = async (text: string, reliableOnly = false) => {
 	// Language detection is not work on mobile firefox version, so we can't detect language
+	// 语言识别器不能再火狐手机版工作
 	// https://github.com/mozilla-mobile/fenix/issues/18633
 
 	// We should await fix or we may use https://github.com/wooorm/franc library, but it's have low precision
 	if (isMobileBrowser()) return null;
 
+	// 调用插件的语言识别api
 	return browser.i18n.detectLanguage(text).then((result) => {
 		if (reliableOnly && !result.isReliable) {
 			return null;

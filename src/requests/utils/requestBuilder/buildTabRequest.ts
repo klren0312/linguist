@@ -18,6 +18,7 @@ type TabOptions<O = any, R = any> = {
 
 /**
  * Factory for building requests which ensure its types
+ * 构建tab请求
  */
 export const buildTabRequest = <O = void, R = void>(
 	endpoint: string,

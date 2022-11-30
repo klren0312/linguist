@@ -65,6 +65,7 @@ const nodeExplore = (
 	const walk = document.createTreeWalker(inputNode, nodeFilter, null);
 	// 包含自己则取当前的, 反之取下一个
 	let node = includeSelf ? walk.currentNode : walk.nextNode();
+	console.log('遍历节点', node);
 	while (node) {
 		if (handler(node) === false) {
 			return;
@@ -269,6 +270,7 @@ export class NodesTranslator {
 
 	// 添加节点
 	private addNode(node: Node) {
+		console.log('添加节点', node);
 		// Add all nodes which element contains (text nodes and attributes of current and inner elements)
 		if (node instanceof Element) {
 			this.handleTree(node, (node) => {
@@ -402,7 +404,7 @@ export class NodesTranslator {
 			targetToParentsCheck = targetNode;
 		} else if (targetNode instanceof Attr) {
 			// 如果是属性字段, 则判断当前属性是否在可翻译列表中
-			// 在则取其节点
+			// 在则取其当前节点
 			if (!this.config.translatableAttributes.has(targetNode.name)) {
 				return false;
 			}
@@ -476,6 +478,7 @@ export class NodesTranslator {
 	 * 处理需要翻译的节点
 	 */
 	private handleTree(node: Element, callback: (node: Node) => void) {
+		console.log('处理节点', node);
 		// NodeFilter.SHOW_ALL 显示所有节点
 		nodeExplore(node, NodeFilter.SHOW_ALL, true, (node) => {
 			callback(node);

@@ -6,6 +6,7 @@ export const [pingFactory, pingReq] = buildTabRequest('ping', {
 	factoryHandler: () => async () => 'pong' as const,
 });
 
+// 检测tab页是否还存在
 export const ping = async (options?: {
 	timeout?: number;
 	tabId?: number;

@@ -13,6 +13,7 @@ import { ping } from '../requests/backend/ping';
 
 /**
  * Send update event to all tabs
+ * 给所有tab页发送更新事件
  */
 export const sendConfigUpdateEvent = () =>
 	getAllTabs().then((tabs) =>

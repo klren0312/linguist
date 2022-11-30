@@ -4,7 +4,7 @@ type RequestHandler = (data: any, sender: Runtime.MessageSender) => void | Promi
 
 /**
  * Add handler for browser requests in current context (background or content script)
- *
+ * 当前上下文(background或content脚本中)添加浏览器请求处理
  * @returns cleanup function which remove listener
  */
 export function addRequestHandler(action: string, handler: RequestHandler) {
@@ -25,7 +25,7 @@ export function addRequestHandler(action: string, handler: RequestHandler) {
 
 /**
  * Send request to background scripts
- *
+ *发送请求到 background
  * It may be `background.ts`, popup or settings
  */
 export function sendBackgroundRequest(action: string, data?: any) {
@@ -34,6 +34,7 @@ export function sendBackgroundRequest(action: string, data?: any) {
 
 /**
  * Send request to tab
+ * 发送请求到tab
  */
 export function sendTabRequest(tabId: number, action: string, data?: any) {
 	return browser.tabs.sendMessage(tabId, { action, data });

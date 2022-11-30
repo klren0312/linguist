@@ -9,12 +9,14 @@ export const getCurrentTab = () => {
 		.then((tab) => tab[0]);
 };
 
+// 获取当前tab页
 export const getCurrentTabId = () =>
 	getCurrentTab().then((tab) => {
 		const tabId = tab.id;
 		return tabId !== undefined ? tabId : Promise.reject(new Error('Invalid tab id'));
 	});
 
+// 获取所有tab页
 export const getAllTabs = () =>
 	browser.tabs
 		.query({})
